@@ -78,9 +78,7 @@ def download_once(url: str, timeout: float) -> DownloadResult:
 
     # Более короткое тело означает, что ответ получен не полностью.
     if expected_size is not None and received != expected_size:
-        raise http.client.IncompleteRead(
-            b"", expected_size - received
-        )
+        raise http.client.IncompleteRead(b"", expected_size - received)
 
     return DownloadResult(
         status=status,
@@ -127,10 +125,7 @@ def run(url: str, timeout: float) -> int:
     print("-------")
     print(f"Requests completed:    {REQUEST_COUNT}")
     print(f"Average request time:  {average_seconds:.3f} s")
-    print(
-        f"Total downloaded:      {format_size(total_bytes)} "
-        f"({total_bytes:,} bytes)"
-    )
+    print(f"Total downloaded:      {format_size(total_bytes)} ({total_bytes:,} bytes)")
     print(f"Download speed:        {format_speed(average_speed)}")
     return 0
 
